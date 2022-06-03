@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/Asventi/keyminer/issues"
   },
-  "homepage": "https://github.com/Asventi/keyminer#readme"
+  "homepage": "https://github.com/Asventi/keyminer#readme",
+  "dependencies": {
+    "asventitag": "^1.0.0",
+    "console-menu": "^0.1.0",
+    "web3": "^1.7.3"
+  },
+  "type": "commonjs"
 }
