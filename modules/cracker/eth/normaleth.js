@@ -1,22 +1,10 @@
 const readline = require('readline');
 const asventitag = require("asventitag");
 const Web3 = require("web3");
-
+const askQuestion = require("../../helper/askQuestion")
 
 async function main() {
     let provider = "";
-    function askQuestion(query) {
-        const rl = readline.createInterface({
-            input: process.stdin,
-            output: process.stdout,
-            terminal: false,
-        });
-
-        return new Promise(resolve => rl.question(query, ans => {
-            rl.close();
-            resolve(ans);
-        }))
-    }
 
     provider = await askQuestion("Enter your ethereum http provider and press Enter: \n");
     console.clear();
@@ -28,8 +16,8 @@ async function main() {
     while (!found) {
         let privatekey = web3.utils.randomHex(32).substring(2);
         let account = web3.eth.accounts.privateKeyToAccount(privatekey);
-        let balance = await web3.eth.getBalance(account.address);
-        balance = web3.utils.fromWei(balance);
+        let balance = await web3.eth.getBalance(account.address)
+            .then(res => {return web3.utils.fromWei(res)})
 
         console.clear();
         asventitag();
